@@ -108,12 +108,13 @@ Expected yes or not, range- it is binary
 Neighborhood
 factor variable - levels indicate neighborhood area in Ames.
 Not continuous, contains the specific neighborhood codes for the house sold
+range- These are descrete values even though they are numbers
 
 3. start the exploration with the main variable:
 
 what is the range of the variable? draw a histogram for a numeric variable or a bar chart, if the variable is categorical. what is the general pattern? is there anything odd?
 follow-up on oddities: see 4
-pick a variable that might be related to the main variable.
+
 
 ```{r}
 library(classdata)
@@ -126,11 +127,31 @@ ggplot(ames,
        aes(x = `Sale Price`)) +
   geom_histogram()
 ```
-Most houses are on the lower end of the range, with a couple outliers in the upper millions. The data is skewed right and unimodal. This makes sense since there is an expected bottom to housing prices but mansions and large estates are expected to break the general trend when compared to average suburban housing.
+Most houses are on the lower end of the range, with a couple outliers in the upper millions. The data is skewed right and unimodal. This makes sense since there is an expected bottom to housing prices but mansions and large estates are expected to break the general trend when compared to average suburban housing. Several houses also have a sale price of zero, which may be an entry error.
 
+<<<<<<< HEAD
 what is the range of that variable? plot. describe the pattern.
 what is the relationship to the main variable? plot a scatterplot, boxplot or facetted barcharts (dependening on the types of variables involved). Describe overall pattern, does this variable describe any oddities discovered in 3? Identify/follow-up on any oddities
 
 
 
 
+=======
+4. pick a variable that might be related to the main variable. what is the range of that variable? plot. describe the pattern.
+what is the relationship to the main variable? plot a scatterplot, boxplot or facetted barcharts (dependening on the types of variables involved). Describe overall pattern, does this variable describe any oddities discovered in 3? Identify/follow-up on any oddities.
+
+
+4. Cameron Kraklio- Square feet compared to sale price
+```{r}
+library(classdata)
+library(ggplot2)
+
+ames
+range(ames$`TotalLivingArea (sf)`)
+
+ggplot(ames,
+       aes(x = `TotalLivingArea (sf)`, y = `Sale Price`)) +
+  geom_point()
+```
+It is a linear positive relationship. There are several outliers with small living areas but high prices. This could be due to a high lot area (like a farm house). This helps to explain the outliers that we saw earlier as they both have high sale price.
+>>>>>>> 83f1f5dfa056d933dd76c0906bf671ba7b371cd8
