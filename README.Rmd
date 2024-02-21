@@ -66,10 +66,13 @@ NA's: 447
 
 Sale Date
 date of sale.
+Type: String 
+Dates range from 2017 to 2022 
 
 Sale Price
 sales price (in US dollar).
-  - This is an Integer type variable which depicts the sales price in USD.Data range is 0 - 20,500,000. 
+Type: Intger 
+Data range is 0 - 20,500,000. 
 ```{r}
 library(tidyverse)
 library(classdata)
@@ -81,9 +84,18 @@ max(ames_maxprice, na.rm = TRUE)
 
 Multi Sale
 logical value: was this sale part of a package?
+Type: String 
+data only implys a Y or NA answer
 
 YearBuilt
 integer value: year in which the house was built.
+Type: Intger
+data ranges from 0 - 2022
+```{r}
+ames_maxyear <-ames$`YearBuilt`
+max(ames_maxyear, na.rm = TRUE)
+min(ames_maxyear, na.rm = TRUE)
+```
 
 Acres
 acres of the lot.
