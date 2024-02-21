@@ -26,13 +26,23 @@ variable of special interest or focus?
 Since this is on housing sales, sale price is likely a variable of
 interest.
 
-16 variables, mainly quantitative. Parcel ID character with ID.
+16 variables, mainly quantitative. Parcel ID \#Used to answer required
+questions \#summary(ames\[“Parcel ID”\]) character with ID. Type:
+Character Length: 6935 (No Range values)
 
-Address property address in Ames, IA.
+Address property address in Ames, IA. \#Used to answer required
+questions \#summary(ames\[“Parcel ID”\]) Type: character Length: 6935
+(No Range values)
 
-Style factor variable detailing the type of housing.
+Style factor variable detailing the type of housing. \#Used to Answer
+required questions \#summary(ames\[’Style”\]) Type: character 1 Story
+Frame: 3732 2 Story Frame: 1456 1 1/2 Story Frame: 711 Split Level
+Frame: 215 Split Foyer Frame: 156 Other: 218 NA: 447
 
-Occupancy factor variable of type of housing.
+Occupancy factor variable of type of housing. Type:Character \#Used to
+answer required question \#summary(ames\[“Occupancy”\]) Condominium: 711
+Single-Family/Owner occupied: 4711 Townhouse: 745 Two-Family Conversion:
+139 NA’s: 447
 
 Sale Date date of sale.
 
