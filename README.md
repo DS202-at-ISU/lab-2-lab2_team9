@@ -69,11 +69,3 @@ the relationship to the main variable? plot a scatterplot, boxplot or
 facetted barcharts (dependening on the types of variables involved).
 Describe overall pattern, does this variable describe any oddities
 discovered in 3? Identify/follow-up on any oddities
-
-example text
-
-``` r
-1 + 2
-```
-
-    ## [1] 3
