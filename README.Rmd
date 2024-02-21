@@ -24,6 +24,8 @@ inspect the first few lines of the data set:
 what variables are there? of what type are the variables? what does each variable mean? what do we expect their data range to be?
 is there a variable of special interest or focus?
 
+Since this is on housing sales, sale price is likely a variable of interest.
+
 16 variables, mainly quantitative.
 Parcel ID
 character with ID.
@@ -68,7 +70,7 @@ AC
 logical value: does the property have an AC?
 
 FirePlace
-logical value: does the property have an fireplace?
+logical value: does the property have an fireplace? Likly
 
 Neighborhood
 factor variable - levels indicate neighborhood area in Ames.
