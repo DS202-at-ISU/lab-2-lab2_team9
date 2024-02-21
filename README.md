@@ -72,14 +72,13 @@ yes or not, range- it is binary
 
 Neighborhood factor variable - levels indicate neighborhood area in
 Ames. Not continuous, contains the specific neighborhood codes for the
-house sold
+house sold range- These are descrete values even though they are numbers
 
 3.  start the exploration with the main variable:
 
 what is the range of the variable? draw a histogram for a numeric
 variable or a bar chart, if the variable is categorical. what is the
 general pattern? is there anything odd? follow-up on oddities: see 4
-pick a variable that might be related to the main variable.
 
 ``` r
 library(classdata)
@@ -126,10 +125,60 @@ are on the lower end of the range, with a couple outliers in the upper
 millions. The data is skewed right and unimodal. This makes sense since
 there is an expected bottom to housing prices but mansions and large
 estates are expected to break the general trend when compared to average
-suburban housing.
+suburban housing. Several houses also have a sale price of zero, which
+may be an entry error.
 
-what is the range of that variable? plot. describe the pattern. what is
-the relationship to the main variable? plot a scatterplot, boxplot or
-facetted barcharts (dependening on the types of variables involved).
-Describe overall pattern, does this variable describe any oddities
-discovered in 3? Identify/follow-up on any oddities
+4.  pick a variable that might be related to the main variable. what is
+    the range of that variable? plot. describe the pattern. what is the
+    relationship to the main variable? plot a scatterplot, boxplot or
+    facetted barcharts (dependening on the types of variables involved).
+    Describe overall pattern, does this variable describe any oddities
+    discovered in 3? Identify/follow-up on any oddities.
+
+5.  Cameron Kraklio- Square feet compared to sale price
+
+``` r
+library(classdata)
+library(ggplot2)
+
+ames
+```
+
+    ## # A tibble: 6,935 × 16
+    ##    `Parcel ID` Address     Style Occupancy `Sale Date` `Sale Price` `Multi Sale`
+    ##    <chr>       <chr>       <fct> <fct>     <date>             <dbl> <chr>       
+    ##  1 0903202160  1024 RIDGE… 1 1/… Single-F… 2022-08-12        181900 <NA>        
+    ##  2 0907428215  4503 TWAIN… 1 St… Condomin… 2022-08-04        127100 <NA>        
+    ##  3 0909428070  2030 MCCAR… 1 St… Single-F… 2022-08-15             0 <NA>        
+    ##  4 0923203160  3404 EMERA… 1 St… Townhouse 2022-08-09        245000 <NA>        
+    ##  5 0520440010  4507 EVERE… <NA>  <NA>      2022-08-03        449664 <NA>        
+    ##  6 0907275030  4512 HEMIN… 2 St… Single-F… 2022-08-16        368000 <NA>        
+    ##  7 0535105180  511 25TH S… 1 St… Single-F… 2022-08-03             0 <NA>        
+    ##  8 0907428446  4510 TWAIN… 1 St… Condomin… 2022-08-16        110000 <NA>        
+    ##  9 0527301030  3409 EISEN… 1 St… Single-F… 2022-08-08        350000 <NA>        
+    ## 10 0531363050  5426 KANSA… 1 St… Single-F… 2022-08-03        242000 <NA>        
+    ## # ℹ 6,925 more rows
+    ## # ℹ 9 more variables: YearBuilt <dbl>, Acres <dbl>,
+    ## #   `TotalLivingArea (sf)` <dbl>, Bedrooms <dbl>,
+    ## #   `FinishedBsmtArea (sf)` <dbl>, `LotArea(sf)` <dbl>, AC <chr>,
+    ## #   FirePlace <chr>, Neighborhood <fct>
+
+``` r
+range(ames$`TotalLivingArea (sf)`)
+```
+
+    ## [1] NA NA
+
+``` r
+ggplot(ames,
+       aes(x = `TotalLivingArea (sf)`, y = `Sale Price`)) +
+  geom_point()
+```
+
+    ## Warning: Removed 447 rows containing missing values (`geom_point()`).
+
+![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- --> It is a
+linear positive relationship. There are several outliers with small
+living areas but high prices. This could be due to a high lot area (like
+a farm house). This helps to explain the outliers that we saw earlier as
+they both have high sale price.
