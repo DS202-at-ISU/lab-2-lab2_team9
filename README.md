@@ -72,7 +72,7 @@ yes or not, range- it is binary
 
 Neighborhood factor variable - levels indicate neighborhood area in
 Ames. Not continuous, contains the specific neighborhood codes for the
-house sold
+house sold range- These are descrete values even though they are numbers
 
 3.  start the exploration with the main variable:
 
@@ -125,7 +125,8 @@ are on the lower end of the range, with a couple outliers in the upper
 millions. The data is skewed right and unimodal. This makes sense since
 there is an expected bottom to housing prices but mansions and large
 estates are expected to break the general trend when compared to average
-suburban housing.
+suburban housing. Several houses also have a sale price of zero, which
+may be an entry error.
 
 4.  pick a variable that might be related to the main variable. what is
     the range of that variable? plot. describe the pattern. what is the
