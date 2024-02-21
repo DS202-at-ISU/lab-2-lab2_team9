@@ -69,7 +69,7 @@ date of sale.
 Type: Date
 library(classdata)
 ames
-range(ames'Sale Date')
+range(ames$'Sale Date')
 
 
 Sale Price

@@ -44,8 +44,7 @@ answer required question \#summary(ames\[“Occupancy”\]) Condominium: 711
 Single-Family/Owner occupied: 4711 Townhouse: 745 Two-Family Conversion:
 139 NA’s: 447
 
-Sale Date date of sale. Type: Date library(classdata) ames
-range(ames’Sale Date’)
+Sale Date date of sale. Type: Date
 
 Sale Price sales price (in US dollar).
 
