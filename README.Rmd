@@ -104,7 +104,7 @@ Neighborhood
 factor variable - levels indicate neighborhood area in Ames.
 Not continuous, contains the specific neighborhood codes for the house sold
 
-start the exploration with the main variable:
+3. start the exploration with the main variable:
 
 what is the range of the variable? draw a histogram for a numeric variable or a bar chart, if the variable is categorical. what is the general pattern? is there anything odd?
 follow-up on oddities: see 4
@@ -112,11 +112,16 @@ pick a variable that might be related to the main variable.
 
 ```{r}
 library(classdata)
+library(ggplot2)
 
 ames
 range(ames$`Sale Price`)
-```
 
+ggplot(ames,
+       aes(x = `Sale Price`)) +
+  geom_histogram()
+```
+Most houses are on the lower end of the range, with a couple outliers in the upper millions. The data is skewed right and unimodal. This makes sense since there is an expected bottom to housing prices but mansions and large estates are expected to break the general trend when compared to average suburban housing.
 
 what is the range of that variable? plot. describe the pattern.
 what is the relationship to the main variable? plot a scatterplot, boxplot or facetted barcharts (dependening on the types of variables involved). Describe overall pattern, does this variable describe any oddities discovered in 3? Identify/follow-up on any oddities
