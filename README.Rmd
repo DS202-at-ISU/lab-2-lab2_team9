@@ -42,6 +42,15 @@ date of sale.
 
 Sale Price
 sales price (in US dollar).
+  - This is an Integer type variable which depicts the sales price in USD.Data range is 0 - 20,500,000. 
+```{r}
+library(tidyverse)
+library(classdata)
+str(ames)
+ames_maxprice <-ames$`Sale Price`
+max(ames_maxprice, na.rm = TRUE)
+```
+  
 
 Multi Sale
 logical value: was this sale part of a package?
