@@ -64,6 +64,11 @@ NA's: 447
 
 Sale Date
 date of sale.
+Type: Date
+library(classdata)
+ames
+range(ames'Sale Date')
+
 
 Sale Price
 sales price (in US dollar).
