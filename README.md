@@ -281,4 +281,70 @@ remotes::install_github("heike/classdata")
 library(classdata)
 data("ames")
 ames_data <- ames
+?ames
 ```
+
+    ## starting httpd help server ...
+
+    ##  done
+
+``` r
+library(ggplot2)
+```
+
+``` r
+ggplot(ames_data, aes(x = Acres, y = `Sale Price`)) +
+  geom_point() +
+  scale_y_continuous(labels = scales::dollar_format(prefix = "$"), limits = c(70000, 1000000)) +
+  labs(title = "Scatter Plot of Sale Price vs Acres",
+       x = "Acres",
+       y = "Sale Price")
+```
+
+    ## Warning: Removed 2898 rows containing missing values (`geom_point()`).
+
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+``` r
+ggplot(ames_data, aes(x = `TotalLivingArea (sf)`, y = `Sale Price`)) +
+  geom_point() +
+  scale_y_continuous(labels = scales::dollar_format(prefix = "$"), limits = c(70000, 1000000)) +
+  labs(title = "Scatter Plot of Sale Price vs Total Living Area",
+       x = "Total Living Area (sf)",
+       y = "Sale Price")
+```
+
+    ## Warning: Removed 3114 rows containing missing values (`geom_point()`).
+
+![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+
+``` r
+ggplot(ames_data, aes(x = Bedrooms, y = `Sale Price`)) +
+  geom_point() +
+  scale_y_continuous(labels = scales::dollar_format(prefix = "$"), limits = c(70000, 1000000)) +
+  labs(title = "Scatter Plot of Sale Price vs Bedrooms",
+       x = "Bedrooms",
+       y = "Sale Price")
+```
+
+    ## Warning: Removed 3114 rows containing missing values (`geom_point()`).
+
+![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+``` r
+ggplot(ames_data, aes(x = `FinishedBsmtArea (sf)`, y = `Sale Price`)) +
+  geom_point() +
+  scale_y_continuous(labels = scales::dollar_format(prefix = "$"), limits = c(70000, 1000000)) +
+  labs(title = "Scatter Plot of Sale Price vs Finished Basement Area",
+       x = "Finished Basement Area (sf)",
+       y = "Sale Price")
+```
+
+    ## Warning: Removed 4254 rows containing missing values (`geom_point()`).
+
+![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
+-The scatter plots are all mostly linear. The bedrroms visual is harder
+to read since its basically a catagorical variable. However the
+strongest coorelation of sales price lies with Finished basement area
+(sf). The relationship is very linear and has a positive trend upwards.
