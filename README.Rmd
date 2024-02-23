@@ -174,3 +174,11 @@ ggplot(ames_filtered, aes(x = `YearBuilt`, y = `Sale Price`)) + geom_point()
 ```
 
 The Data has a linearly positive relationship. There are outliers that were indicating a house built in the year 0 so logically i removed them from the data being analysed. The outliers that you can see in the scatter plot I believe indicate mansions that were built in the early 2000 due to the high listing prices around 20 million dollars. 
+
+```{r}
+remotes::install_github("heike/classdata")
+
+library(classdata)
+data("ames")
+ames_data <- ames
+

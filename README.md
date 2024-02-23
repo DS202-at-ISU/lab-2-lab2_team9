@@ -46,11 +46,72 @@ Single-Family/Owner occupied: 4711 Townhouse: 745 Two-Family Conversion:
 
 Sale Date date of sale.
 
-Sale Price sales price (in US dollar).
+Sale Price sales price (in US dollar). Type: Intger Data range is 0 -
+20,500,000.
 
-Multi Sale logical value: was this sale part of a package?
+``` r
+library(tidyverse)
+```
 
-YearBuilt integer value: year in which the house was built.
+    ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+    ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+    ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+    ## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+    ## ✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+    ## ✔ purrr     1.0.2     
+    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ✖ dplyr::filter() masks stats::filter()
+    ## ✖ dplyr::lag()    masks stats::lag()
+    ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+``` r
+library(classdata)
+str(ames)
+```
+
+    ## tibble [6,935 × 16] (S3: tbl_df/tbl/data.frame)
+    ##  $ Parcel ID            : chr [1:6935] "0903202160" "0907428215" "0909428070" "0923203160" ...
+    ##  $ Address              : chr [1:6935] "1024 RIDGEWOOD AVE, AMES" "4503 TWAIN CIR UNIT 105, AMES" "2030 MCCARTHY RD, AMES" "3404 EMERALD DR, AMES" ...
+    ##  $ Style                : Factor w/ 12 levels "1 1/2 Story Brick",..: 2 5 5 5 NA 9 5 5 5 5 ...
+    ##  $ Occupancy            : Factor w/ 5 levels "Condominium",..: 2 1 2 3 NA 2 2 1 2 2 ...
+    ##  $ Sale Date            : Date[1:6935], format: "2022-08-12" "2022-08-04" ...
+    ##  $ Sale Price           : num [1:6935] 181900 127100 0 245000 449664 ...
+    ##  $ Multi Sale           : chr [1:6935] NA NA NA NA ...
+    ##  $ YearBuilt            : num [1:6935] 1940 2006 1951 1997 NA ...
+    ##  $ Acres                : num [1:6935] 0.109 0.027 0.321 0.103 0.287 0.494 0.172 0.023 0.285 0.172 ...
+    ##  $ TotalLivingArea (sf) : num [1:6935] 1030 771 1456 1289 NA ...
+    ##  $ Bedrooms             : num [1:6935] 2 1 3 4 NA 4 5 1 3 4 ...
+    ##  $ FinishedBsmtArea (sf): num [1:6935] NA NA 1261 890 NA ...
+    ##  $ LotArea(sf)          : num [1:6935] 4740 1181 14000 4500 12493 ...
+    ##  $ AC                   : chr [1:6935] "Yes" "Yes" "Yes" "Yes" ...
+    ##  $ FirePlace            : chr [1:6935] "Yes" "No" "No" "No" ...
+    ##  $ Neighborhood         : Factor w/ 42 levels "(0) None","(13) Apts: Campus",..: 15 40 19 18 6 24 14 40 13 23 ...
+
+``` r
+ames_maxprice <-ames$`Sale Price`
+max(ames_maxprice, na.rm = TRUE)
+```
+
+    ## [1] 20500000
+
+Multi Sale logical value: was this sale part of a package? Type: String
+data only implys a Y or NA answer
+
+YearBuilt integer value: year in which the house was built. Type: Intger
+data ranges from 0 - 2022
+
+``` r
+ames_maxyear <-ames$`YearBuilt`
+max(ames_maxyear, na.rm = TRUE)
+```
+
+    ## [1] 2022
+
+``` r
+min(ames_maxyear, na.rm = TRUE)
+```
+
+    ## [1] 0
 
 Acres acres of the lot.
 
@@ -120,7 +181,7 @@ ggplot(ames,
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-![](README_files/figure-gfm/unnamed-chunk-1-1.png)<!-- --> Most houses
+![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- --> Most houses
 are on the lower end of the range, with a couple outliers in the upper
 millions. The data is skewed right and unimodal. This makes sense since
 there is an expected bottom to housing prices but mansions and large
@@ -177,8 +238,47 @@ ggplot(ames,
 
     ## Warning: Removed 447 rows containing missing values (`geom_point()`).
 
-![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- --> It is a
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- --> It is a
 linear positive relationship. There are several outliers with small
 living areas but high prices. This could be due to a high lot area (like
 a farm house). This helps to explain the outliers that we saw earlier as
 they both have high sale price.
+
+Olivia Riniker - YearBuilt compares to the sale Price
+
+``` r
+library(classdata)
+library(ggplot2)
+
+range(ames$`YearBuilt`)
+```
+
+    ## [1] NA NA
+
+``` r
+# restrictnig data so it is more readable 
+ames_filtered <- ames %>%
+  filter(YearBuilt > 1879 )
+ggplot(ames_filtered, aes(x = `YearBuilt`, y = `Sale Price`)) + geom_point()
+```
+
+![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+The Data has a linearly positive relationship. There are outliers that
+were indicating a house built in the year 0 so logically i removed them
+from the data being analysed. The outliers that you can see in the
+scatter plot I believe indicate mansions that were built in the early
+2000 due to the high listing prices around 20 million dollars.
+
+``` r
+remotes::install_github("heike/classdata")
+```
+
+    ## Skipping install of 'classdata' from a github remote, the SHA1 (1faa8961) has not changed since last install.
+    ##   Use `force = TRUE` to force installation
+
+``` r
+library(classdata)
+data("ames")
+ames_data <- ames
+```
