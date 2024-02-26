@@ -155,3 +155,7 @@ ggplot(ames,
 ```
 It is a linear positive relationship. There are several outliers with small living areas but high prices. This could be due to a high lot area (like a farm house). This helps to explain the outliers that we saw earlier as they both have high sale price.
 >>>>>>> 83f1f5dfa056d933dd76c0906bf671ba7b371cd8
+
+4. Gabriel Wright- Number of bedrooms to sales price
+ames
+range(ames$'Bedrooms')
