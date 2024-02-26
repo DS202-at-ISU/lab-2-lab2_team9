@@ -7,6 +7,7 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
 ```
 
 # Lab report #1
@@ -66,46 +67,45 @@ NA's: 447
 
 Sale Date
 date of sale.
+Type: Date
+library(classdata)
+ames
+range(ames$'Sale Date')
+
 
 Sale Price
 sales price (in US dollar).
-Type: Intger 
-Data range is 0 - 20,500,000. 
-```{r}
-library(tidyverse)
-library(classdata)
-str(ames)
-ames_maxprice <-ames$`Sale Price`
-max(ames_maxprice, na.rm = TRUE)
-```
-  
+Type: Intger Data range is 0 -
+20,500,000.
 
 Multi Sale
-logical value: was this sale part of a package?
-Type: String 
-data only implys a Y or NA answer
+Sales that include mulitple properties/houses
+Type: character
 
 YearBuilt
 integer value: year in which the house was built.
-Type: Intger
-data ranges from 0 - 2022
-```{r}
-ames_maxyear <-ames$`YearBuilt`
-max(ames_maxyear, na.rm = TRUE)
-min(ames_maxyear, na.rm = TRUE)
-```
+Type: Date
+range(ames$'YearBuilt')
 
 Acres
 acres of the lot.
+Type: Float
+range(ames$'Acres')
 
 TotalLivingArea (sf)
 total living area in square feet.
+Type: Integer
+range(ames$'TotalLivingArea (sf)')
 
 Bedrooms
 number of bedrooms.
+Type: integer
+Range: 0-10
 
 FinishedBsmtArea (sf)
 total area of the finished basement in square feet.
+Type: float
+range(ames$'FinishedBsmtArea (sf)')
 
 LotArea(sf)
 total lot area in square feet.
@@ -143,6 +143,12 @@ ggplot(ames,
 ```
 Most houses are on the lower end of the range, with a couple outliers in the upper millions. The data is skewed right and unimodal. This makes sense since there is an expected bottom to housing prices but mansions and large estates are expected to break the general trend when compared to average suburban housing. Several houses also have a sale price of zero, which may be an entry error.
 
+
+what is the range of that variable? plot. describe the pattern.
+what is the relationship to the main variable? plot a scatterplot, boxplot or facetted barcharts (dependening on the types of variables involved). Describe overall pattern, does this variable describe any oddities discovered in 3? Identify/follow-up on any oddities
+
+
+
 4. pick a variable that might be related to the main variable. what is the range of that variable? plot. describe the pattern.
 what is the relationship to the main variable? plot a scatterplot, boxplot or facetted barcharts (dependening on the types of variables involved). Describe overall pattern, does this variable describe any oddities discovered in 3? Identify/follow-up on any oddities.
 
@@ -161,11 +167,11 @@ ggplot(ames,
 ```
 It is a linear positive relationship. There are several outliers with small living areas but high prices. This could be due to a high lot area (like a farm house). This helps to explain the outliers that we saw earlier as they both have high sale price.
 
-Olivia Riniker - YearBuilt compares to the sale Price 
+
+4. Olivia Riniker - YearBuilt compares to the sale Price 
 ```{r}
 library(classdata)
 library(ggplot2)
-
 range(ames$`YearBuilt`)
 # restrictnig data so it is more readable 
 ames_filtered <- ames %>%
@@ -175,10 +181,21 @@ ggplot(ames_filtered, aes(x = `YearBuilt`, y = `Sale Price`)) + geom_point()
 
 The Data has a linearly positive relationship. There are outliers that were indicating a house built in the year 0 so logically i removed them from the data being analysed. The outliers that you can see in the scatter plot I believe indicate mansions that were built in the early 2000 due to the high listing prices around 20 million dollars. 
 
+4. Gabriel Wright- Acres to sales price
 ```{r}
-remotes::install_github("heike/classdata")
-
 library(classdata)
+
+library(ggplot2)
+ames
+range(ames$'Acres')
+#Cannot have a range due to minimum value being zero
+ggplot(ames,
+       aes(x = `Acres`, y = `Sale Price`)) +
+  geom_point()
+```
+Graph displays a postiive linear relationship where the more acres a property has the sale price tends to be higher. There are a few properties that would be considered outliers and are most likely due to expensive houses in high population cities.
+
+```{r}
 data("ames")
 ames_data <- ames
 ?ames
@@ -227,3 +244,4 @@ ggplot(ames_data, aes(x = `FinishedBsmtArea (sf)`, y = `Sale Price`)) +
 ```
 
 -The scatter plots are all mostly linear. The bedrroms visual is harder to read since its basically a catagorical variable. However the strongest coorelation of sales price lies with Finished basement area (sf). The relationship is very linear and has a positive trend upwards.
+
