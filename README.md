@@ -47,7 +47,8 @@ Single-Family/Owner occupied: 4711 Townhouse: 745 Two-Family Conversion:
 Sale Date date of sale. Type: Date library(classdata) ames
 range(ames\$‘Sale Date’)
 
-Sale Price sales price (in US dollar).
+Sale Price sales price (in US dollar). Type: Intger Data range is 0 -
+20,500,000.
 
 Multi Sale logical value: was this sale part of a package?
 
@@ -183,7 +184,8 @@ ggplot(ames,
   geom_point()
 ```
 
-    ## Warning: Removed 447 rows containing missing values (`geom_point()`).
+    ## Warning: Removed 447 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
 
 ![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- --> It is a
 linear positive relationship. There are several outliers with small
@@ -192,9 +194,47 @@ a farm house). This helps to explain the outliers that we saw earlier as
 they both have high sale price. \>\>\>\>\>\>\>
 83f1f5dfa056d933dd76c0906bf671ba7b371cd8
 
-4.  Gabriel Wright- Number of bedrooms to sales price library(classdata)
-    library(ggplot2)
+4.  Gabriel Wright- Number of bedrooms to sales price
 
-ames range(ames\$‘Bedrooms’)
+``` r
+library(classdata)
+library(ggplot2)
+ames
+```
 
-ggplot(ames, aes(x = ‘Bedrooms’, y = ‘Sale Price’)) + geom_point()
+    ## # A tibble: 6,935 × 16
+    ##    `Parcel ID` Address     Style Occupancy `Sale Date` `Sale Price` `Multi Sale`
+    ##    <chr>       <chr>       <fct> <fct>     <date>             <dbl> <chr>       
+    ##  1 0903202160  1024 RIDGE… 1 1/… Single-F… 2022-08-12        181900 <NA>        
+    ##  2 0907428215  4503 TWAIN… 1 St… Condomin… 2022-08-04        127100 <NA>        
+    ##  3 0909428070  2030 MCCAR… 1 St… Single-F… 2022-08-15             0 <NA>        
+    ##  4 0923203160  3404 EMERA… 1 St… Townhouse 2022-08-09        245000 <NA>        
+    ##  5 0520440010  4507 EVERE… <NA>  <NA>      2022-08-03        449664 <NA>        
+    ##  6 0907275030  4512 HEMIN… 2 St… Single-F… 2022-08-16        368000 <NA>        
+    ##  7 0535105180  511 25TH S… 1 St… Single-F… 2022-08-03             0 <NA>        
+    ##  8 0907428446  4510 TWAIN… 1 St… Condomin… 2022-08-16        110000 <NA>        
+    ##  9 0527301030  3409 EISEN… 1 St… Single-F… 2022-08-08        350000 <NA>        
+    ## 10 0531363050  5426 KANSA… 1 St… Single-F… 2022-08-03        242000 <NA>        
+    ## # ℹ 6,925 more rows
+    ## # ℹ 9 more variables: YearBuilt <dbl>, Acres <dbl>,
+    ## #   `TotalLivingArea (sf)` <dbl>, Bedrooms <dbl>,
+    ## #   `FinishedBsmtArea (sf)` <dbl>, `LotArea(sf)` <dbl>, AC <chr>,
+    ## #   FirePlace <chr>, Neighborhood <fct>
+
+``` r
+range(ames$'Acres')
+```
+
+    ## [1] NA NA
+
+``` r
+#Cannot produce a range due to minimum value being zero and maximum being 10
+ggplot(ames,
+       aes(x = `Acres`, y = `Sale Price`)) +
+  geom_point()
+```
+
+    ## Warning: Removed 89 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->

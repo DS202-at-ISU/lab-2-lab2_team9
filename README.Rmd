@@ -74,24 +74,37 @@ range(ames$'Sale Date')
 
 Sale Price
 sales price (in US dollar).
+Type: Intger Data range is 0 -
+20,500,000.
 
 Multi Sale
-logical value: was this sale part of a package?
+Sales that include mulitple properties/houses
+Type: character
 
 YearBuilt
 integer value: year in which the house was built.
+Type: Date
+range(ames$'YearBuilt')
 
 Acres
 acres of the lot.
+Type: Float
+range(ames$'Acres')
 
 TotalLivingArea (sf)
 total living area in square feet.
+Type: Integer
+range(ames$'TotalLivingArea (sf)')
 
 Bedrooms
 number of bedrooms.
+Type: integer
+Range: 0-10
 
 FinishedBsmtArea (sf)
 total area of the finished basement in square feet.
+Type: float
+range(ames$'FinishedBsmtArea (sf)')
 
 LotArea(sf)
 total lot area in square feet.
@@ -156,11 +169,28 @@ ggplot(ames,
 It is a linear positive relationship. There are several outliers with small living areas but high prices. This could be due to a high lot area (like a farm house). This helps to explain the outliers that we saw earlier as they both have high sale price.
 >>>>>>> 83f1f5dfa056d933dd76c0906bf671ba7b371cd8
 
-4. Gabriel Wright- Number of bedrooms to sales price
+4. Olivia Riniker - YearBuilt compares to the sale Price 
+```{r}
 library(classdata)
 library(ggplot2)
+range(ames$`YearBuilt`)
+# restrictnig data so it is more readable 
+ames_filtered <- ames %>%
+  filter(YearBuilt > 1879 )
+ggplot(ames_filtered, aes(x = `YearBuilt`, y = `Sale Price`)) + geom_point()
+```
 
+The Data has a linearly positive relationship. There are outliers that were indicating a house built in the year 0 so logically i removed them from the data being analysed. The outliers that you can see in the scatter plot I believe indicate mansions that were built in the early 2000 due to the high listing prices around 20 million dollars. 
+
+4. Gabriel Wright- Acres to sales price
+```{r}
+library(classdata)
+library(ggplot2)
 ames
-range(ames$'Bedrooms')
-
-ggplot(ames, aes(x = 'Bedrooms', y = 'Sale Price')) + geom_point()
+range(ames$'Acres')
+#Cannot have a range due to minimum value being zero
+ggplot(ames,
+       aes(x = `Acres`, y = `Sale Price`)) +
+  geom_point()
+```
+Graph displays a postiive linear relationship where the more acres a property has the sale price tends to be higher. There are a few properties that would be considered outliers and are most likely due to expensive houses in high population cities.
