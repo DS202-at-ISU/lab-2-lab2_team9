@@ -44,7 +44,8 @@ answer required question \#summary(ames\[“Occupancy”\]) Condominium: 711
 Single-Family/Owner occupied: 4711 Townhouse: 745 Two-Family Conversion:
 139 NA’s: 447
 
-Sale Date date of sale. Type: Date
+Sale Date date of sale. Type: Date library(classdata) ames
+range(ames\$‘Sale Date’)
 
 Sale Price sales price (in US dollar).
 
@@ -128,14 +129,21 @@ estates are expected to break the general trend when compared to average
 suburban housing. Several houses also have a sale price of zero, which
 may be an entry error.
 
-4.  pick a variable that might be related to the main variable. what is
-    the range of that variable? plot. describe the pattern. what is the
-    relationship to the main variable? plot a scatterplot, boxplot or
-    facetted barcharts (dependening on the types of variables involved).
-    Describe overall pattern, does this variable describe any oddities
-    discovered in 3? Identify/follow-up on any oddities.
+\<\<\<\<\<\<\< HEAD what is the range of that variable? plot. describe
+the pattern. what is the relationship to the main variable? plot a
+scatterplot, boxplot or facetted barcharts (dependening on the types of
+variables involved). Describe overall pattern, does this variable
+describe any oddities discovered in 3? Identify/follow-up on any
+oddities
 
-5.  Cameron Kraklio- Square feet compared to sale price
+======= 4. pick a variable that might be related to the main variable.
+what is the range of that variable? plot. describe the pattern. what is
+the relationship to the main variable? plot a scatterplot, boxplot or
+facetted barcharts (dependening on the types of variables involved).
+Describe overall pattern, does this variable describe any oddities
+discovered in 3? Identify/follow-up on any oddities.
+
+4.  Cameron Kraklio- Square feet compared to sale price
 
 ``` r
 library(classdata)
@@ -181,4 +189,5 @@ ggplot(ames,
 linear positive relationship. There are several outliers with small
 living areas but high prices. This could be due to a high lot area (like
 a farm house). This helps to explain the outliers that we saw earlier as
-they both have high sale price.
+they both have high sale price. \>\>\>\>\>\>\>
+83f1f5dfa056d933dd76c0906bf671ba7b371cd8
